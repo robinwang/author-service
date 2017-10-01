@@ -1,13 +1,9 @@
 package edu.cmu.mis.iccfb.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -18,19 +14,15 @@ public class Author {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     
-    private Long id;
+    private Long id = 0L;
 
     private String name;
     
-    
-    @OneToMany(mappedBy="author", fetch=FetchType.EAGER)
-    //@JsonBackReference
-    private List<Quote> quotes;
-    
 	protected Author() {}
 
-    public Author(String name) {
-        this.name = name;
+    public Author(String name, long authorId) {
+        this.id = authorId;
+    	this.name = name;
     }
 
     @Override
@@ -49,12 +41,4 @@ public class Author {
     public String getName() {
         return name;
     }
-
-	public List<Quote> getQuotes() {
-		return quotes;
-	}
-
-	public void setQuotes(List<Quote> quotes) {
-		this.quotes = quotes;
-	}
 }

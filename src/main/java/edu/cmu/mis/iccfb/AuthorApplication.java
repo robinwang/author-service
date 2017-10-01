@@ -6,12 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class QuoteApplication {
+public class AuthorApplication {
 
     @Autowired
     private SeedData seedData;
     
     public static void main(String[] args) {
-        SpringApplication.run(QuoteApplication.class, args);
+        SpringApplication.run(AuthorApplication.class, args);
 	}
 }
