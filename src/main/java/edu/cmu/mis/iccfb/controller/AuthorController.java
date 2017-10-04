@@ -1,6 +1,8 @@
 package edu.cmu.mis.iccfb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,14 +19,14 @@ public class AuthorController {
     private AuthorService authorService;    
     
     @RequestMapping("/authorId")
-    public String getAuthorName(@RequestParam(value="authorId") long authorId) {
+    public Author getAuthorName(@RequestParam(value="authorId") long authorId) {
         Author a = authorService.findOne(authorId);
-        return a.getName();
+        return a;
     }
     @RequestMapping("/authorName")
-    public Long getAuthorId(@RequestParam(value="authorName") String authorName) {
+    public Author getAuthorId(@RequestParam(value="authorName") String authorName) {
         Author a = authorService.findByName(authorName);
-        return a.getId();
+        return a;
     }
     @RequestMapping(value = "/author", method = RequestMethod.POST)
     public void saveQuote(@RequestBody Author author) {
