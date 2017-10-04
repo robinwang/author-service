@@ -29,8 +29,9 @@ public class AuthorController {
         return a;
     }
     @RequestMapping(value = "/author", method = RequestMethod.POST)
-    public void saveQuote(@RequestBody Author author) {
+    public Long saveQuote(@RequestBody Author author) {
         System.out.println("Saving author");
         authorService.save(author);
+        return getAuthorId(author.getName()).getId();
     }
 }
